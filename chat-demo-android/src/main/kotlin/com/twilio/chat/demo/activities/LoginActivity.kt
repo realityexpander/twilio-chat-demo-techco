@@ -40,13 +40,15 @@ class LoginActivity : Activity(), LoginListener, AnkoLogger {
                 .putString("ttl", ttl)
                 .apply()
 
-            val url = Uri.parse(BuildConfig.ACCESS_TOKEN_SERVICE_URL)
-                    .buildUpon()
-                    .appendQueryParameter("identity", userName)
-                    .appendQueryParameter("realm", realm)
-                    .appendQueryParameter("ttl", ttl)
-                    .build()
-                    .toString()
+//            val url = Uri.parse(BuildConfig.ACCESS_TOKEN_SERVICE_URL)
+//                    .buildUpon()
+//                    .appendQueryParameter("identity", userName)
+//                    .appendQueryParameter("realm", realm)
+//                    .appendQueryParameter("ttl", ttl)
+//                    .build()
+//                    .toString()
+            val url = BuildConfig.ACCESS_TOKEN_SERVICE_URL + userName
+
             debug { "url string : $url" }
 
             TwilioApplication.instance.basicClient.login(userName, certPinningChosen, realm, url, this@LoginActivity)
